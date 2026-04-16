@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Light Painter — Paint Light in Blender</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -125,6 +125,13 @@ h1{
   background: linear-gradient(135deg, rgba(255,107,53,0.05), rgba(199,125,255,0.05));
 }
 .video-placeholder span { position: relative; z-index: 1; }
+
+.hero-video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 
 .btn-primary {
   padding: 16px 40px; border-radius: 100px; font-family: 'Syne', sans-serif;
@@ -525,13 +532,14 @@ footer .footer-links a:hover { color: var(--white); }
   </div>
 
   <div class="hero-video-wrap">
-      <iframe width="800" height="450" 
-          src="https://www.youtube-nocookie.com/embed/2wuljCRKEJU" 
-          title="YouTube video player" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-      </iframe>
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/2wuljCRKEJU" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+    </iframe>
   </div>
   <p class="hero-compat" style="margin-bottom: 40px;">Works with <span>Cycles</span> · <span>Spot</span> &amp; <span>Area</span> lights</p>
   
