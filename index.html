@@ -477,17 +477,50 @@ footer .footer-links a:hover { color: var(--white); }
   line-height: 1.7;
   font-weight: 300;
 }
+
+#lang-switcher{
+  position: absolute;
+  top: 40px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  gap: 4px;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(241 0 255 / 43%);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+
 @media (max-width: 768px) {
   #faq { padding: 60px 20px; }
   .faq-item summary { padding: 18px 20px; font-size: 15px; }
   .faq-item p { padding: 0 20px 20px; font-size: 14px; }
+  
 }
+
+@media (max-width: 575.98px) {
+
+  .section {padding: 36px;}
+  #animation .section-header{padding: 78px 28px;}
+
+}
+
+
 
 </style>
 </head>
 <body>
 
 <div class="wrapper" style="overflow-x: hidden;position: relative;">
+
+<!-- LANGUAGE SWITCHER -->
+<div id="lang-switcher">
+  <button class="lang-btn active" data-lang="en" style="cursor:pointer; padding:6px 12px; border:none; border-radius:7px; font-size:12px; font-weight:600; font-family:'Space Mono',monospace; letter-spacing:0.5px; transition:all 0.2s; background:rgba(255,107,53,0.2); color:#ff6b35;">EN</button>
+  <button class="lang-btn" data-lang="ja" style="cursor:pointer; padding:6px 12px; border:none; border-radius:7px; font-size:12px; font-weight:600; font-family:'Space Mono',monospace; letter-spacing:0.5px; transition:all 0.2s; background:transparent; color:rgba(255,255,255,0.4);">日本語</button>
+  <button class="lang-btn" data-lang="ko" style="cursor:pointer; padding:6px 12px; border:none; border-radius:7px; font-size:12px; font-weight:600; font-family:'Space Mono',monospace; letter-spacing:0.5px; transition:all 0.2s; background:transparent; color:rgba(255,255,255,0.4);">한국어</button>
+</div>
 
 <div id="promo-bar">
   
@@ -605,7 +638,7 @@ footer .footer-links a:hover { color: var(--white); }
       </div>
     </div>
     <p class="video-yt-link">GIF preview — <a href="https://x.com/LightPainterPro" target="_blank">watch full quality on X (Twitter) ↗</a></p>
-    <p style="color:var(--text-dim);font-size:15px;">
+    <p class="under-video-desc" style="color:var(--text-dim);font-size:15px;">
       Drag to set the direction, switch between linear and radial. Combine them with different blend modes — the possibilities are truly endless.
     </p>
     <div class="feature-list">
@@ -706,7 +739,7 @@ footer .footer-links a:hover { color: var(--white); }
 
     <p class="video-yt-link">GIF preview — <a href="https://x.com/LightPainterPro" target="_blank">watch full quality on X (Twitter) ↗</a></p>
 
-    <p style="color:var(--text-dim); max-width:800px; font-size:15px;">
+    <p class="under-video-desc" style="color:var(--text-dim); max-width:800px; font-size:15px;">
       Apply ready texture to light layer. Erase a corner with the brush, push a gradient across it, change its blend mode, animate it. Pre-made gobos stop being static images — they become starting points.
     </p>
     <div class="feature-list">
@@ -741,7 +774,7 @@ footer .footer-links a:hover { color: var(--white); }
 
     <p class="video-yt-link">GIF preview — <a href="https://x.com/LightPainterPro" target="_blank">watch full quality on X (Twitter) ↗</a></p>
 
-    <p style="color:var(--text-dim); font-size:15px;">
+    <p class="under-video-desc" style="color:var(--text-dim); font-size:15px;">
       <strong style="color:var(--white);">The light stays untouched.</strong> Independent layer animation lets you achieve complex scene lighting using just one light — no need for multiple lights.
     </p>
     <div class="feature-list">
@@ -780,7 +813,7 @@ footer .footer-links a:hover { color: var(--white); }
       One-time purchase. Lifetime updates.
     </p>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 36px 14px; text-align:left;">
 
       <!-- LITE -->
       <div style="
@@ -900,7 +933,7 @@ footer .footer-links a:hover { color: var(--white); }
           Perfect Companion <small>❤️</small>
         </h3>
 
-        <div class="companion-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="companion-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
           
           <!-- Light Wrangler card -->
           <div style="
@@ -978,6 +1011,42 @@ footer .footer-links a:hover { color: var(--white); }
     </div>
 
     <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>What exactly does Light Painter paint on?</summary>
+        <p>It paints on the light's light (gobo) texture — the image that controls what a Spot or Area light projects. You're not painting on scene objects or meshes. The light itself is your canvas, so there are no limitations from object materials or emission shaders. Everything happens on the light.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this the same "Light Painter" add-on from the Blender Extensions platform?</summary>
+        <p>No — those are two completely separate add-ons by different developers. The one on Blender Extensions is a light <em>placement</em> helper that puts lights where you click on a surface. This Light Painter does something fundamentally different: it masks and shapes the light itself, giving you full control over what areas get lit and which don't. Same name, very different tools.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I paint from any viewport angle, or only camera view?</summary>
+        <p>You can paint from any angle — just use your mouse cursor in the viewport. There are two projection modes: <strong>Camera Space</strong> (what you see on screen maps 1:1 to the paint result) and <strong>Light Space</strong> (paint maps relative to the light's own projection, consistent regardless of viewing angle). Pick whichever fits your needs.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I set it up? Do I place lights first?</summary>
+        <p>Yes — you place your Spot or Area lights in the scene as usual, then select a light and start painting inside its projection. There's no special setup, no node wiring, no material graph. Install the add-on, pick a light, add a layer, paint.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I paint with color? How do multicolored lights work?</summary>
+        <p>Pick any color and paint — you can do it all on one layer or spread colors across separate layers. Each layer has its own blend mode, so you control exactly how colors mix. Under the hood, each light gets its own stack of gobo textures that you paint on independently.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are there limitations on shadow softness or light control?</summary>
+        <p>No — since you're painting the gobo texture, everything that Blender's Cycles engine can do with that texture still applies. Light size, shadow softness, intensity, and falloff all work normally. Light Painter just gives you a much faster, more visual way to create and edit the gobo itself.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I export painted lights to Unity or Unreal?</summary>
+        <p>Light Painter uses a layer stack built on top of Blender's light shader nodes, so the multi-layer setup itself won't transfer to another engine. The recommended workflow: merge your layers into a single image (Full version has Merge Visible), then export that texture and assign it as a light cookie in your engine. Both Unity ("Cookies") and Unreal ("Light Functions" / gobo textures) natively support this — just drop the exported image onto a light and you're set.</p>
+      </details>
+
       <details class="faq-item">
         <summary>Does it work with multiple lights in the scene?</summary>
         <p>Yes — any number of lights. Each light can keep its own layer stack, so you can jump between lights, add or edit layers on each one, and paint each independently. There's no setup per light: select it, add a layer, start painting.</p>
@@ -2186,6 +2255,486 @@ void main() {
   requestAnimationFrame(frame);
 })();
 
+
+// ─── LANGUAGE SWITCHER ───
+(function() {
+  const T = {
+    ja: {
+      // Promo bar
+      '.promo-sale span:not(:has(small))': '50% OFF — セール — 4月23日まで — ラストチャンス',
+      // Hero
+      '#hero .title:not(.gradient-text)': 'ライティングと戦うのはもうやめよう。',
+      '#hero .gradient-text': '光を描こう。',
+      '.hero-sub': 'Blender初のアドオン。ブラシ、グラデーション、選択、レイヤーでビューポート上で直感的にライティングを描画できます。',
+      '.hero-compat': 'Cycles レンダーエンジン対応 · Spot & Area ライト',
+      // Hero description paragraphs
+      '#hero > p:nth-of-type(1)': 'Blenderでのライティングは間接的でストレスがたまります。位置、サイズ、出力の調整、ゴボの差し替え — 理想の雰囲気になるまで何度も繰り返し。',
+      '#hero > p:nth-of-type(2)': '<strong>Light Painterがすべてを変えます。</strong> <span style="font-weight: 300;">シーン上で直接光をペイント。リアルタイムでビューポートに反映されます。レイヤー、ブレンドモード、非破壊編集で完全にコントロール。直感的で、表現力豊かで、楽しい。</span>',
+      '#hero > p:nth-of-type(3)': 'ライトペインターがすべてを変える → Light Painter がすべてを変える。シーンに直接、光で描く——すべてのストロークがリアルタイムでビューポートに反映される。ライトはレイヤー、ブレンドモード、非破壊コントロールを備えた、完全に編集可能なクリエイティブツールになる。直感的で、表現豊かで、楽しい。',
+      // Brush
+      '#brush .section-badge': '01 — ブラシペイント',
+      '#brush .section-title': 'Photoshopのように<br>光を<span class="hl gradient-text1">ペイント</span>',
+      '#brush .section-desc': 'ブラシを選び、サイズ・硬さ・強度・フロー・フォールオフを調整。ビューポート上で直接ペイント。消しゴムモードで簡単修正。',
+      // Gradient
+      '#gradient .section-badge': '02 — グラデーションペイント',
+      '#gradient .section-title': '<span class="hl gradient-text2">グラデーション</span>ライト、<br>無限の創造性',
+      '#gradient .section-desc': 'ドラッグで美しいリニア・ラジアルグラデーションをシーンに適用。ソフトフォールオフ、ドラマチックなビネット、滑らかなカラーウォッシュ — ブレンドモードで重ねて複雑な効果を。',
+      '#gradient .section-inner > p': 'ドラッグで方向を設定、リニアとラジアルを切り替え。ブレンドモードを組み合わせれば、可能性は本当に無限です。',
+      '#gradient .under-video-desc': 'ドラッグして方向を設定し、リニアとラジアルを切り替える。異なるブレンドモードを組み合わせれば——可能性は本当に無限大。',
+      // Selection
+      '#selection .section-badge': '03 — 精密選択',
+      '#selection .section-title': 'エリアを定義。<br><span class="hl">光をコントロール。</span>',
+      '#selection .section-desc': '矩形、投げ縄、ポリライン、ブラシ選択 — 必要な場所だけにペイント、フィル、消去。ビューポート上でテクセルレベルの精度を実現。',
+      // Layers
+      '#layers .section-badge': '04 — レイヤーシステム',
+      '#layers .section-title': '失敗を恐れず<br><span class="hl">ペイントしよう</span>',
+      '#layers .section-desc': '必要なだけレイヤーを作成し、光を独立したレイヤーに分割。並べ替え、非表示、ブレンドモード変更、変形、削除 — いつでも自由に。Photoshopと同じ、光のためのレイヤー。',
+      '#layers .section-inner > div > p': '各レイヤーは独立して動作。大きな形は一つのレイヤーに、細部は別のレイヤーに。レイヤーごとにアンドゥ。複製してA/Bテスト。表示切替で比較。各レイヤーにブレンドモード、オフセット、回転、スケール。',
+      // Gobos
+      '#gobos .section-title': 'ゴボをお持ちですか？ <span class="hl" style="background: linear-gradient(135deg, #ffd166, #ff6b35, #c77dff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;white-space: nowrap;">ドロップするだけ。</span>',
+      '#gobos .section-desc': 'PNG、JPG、EXRのゴボをライトに直接ドロップ。即座に編集可能なレイヤーになります — ペイント、消去、マスク、アニメーションに対応。',
+      '#gobos .section-inner > p': '既製テクスチャをレイヤーに適用。ブラシで角を消し、グラデーションをかけ、ブレンドモードを変更、アニメーション化。静的な画像が進化する出発点に。',
+      '#gobos .under-video-desc': 'テクスチャをライトレイヤーに適用する。ブラシで角を消したり、グラデーションをかけたり、ブレンドモードを変えたり、アニメーションさせたり。既成のゴボはもはや静止画ではなく——創造の出発点になる。',
+      // Animation
+      '#animation .section-title': 'レイヤーをキーフレーム、<br><span class="hl">光をアニメーション</span>',
+      '#animation .section-desc': 'Light PainterはBlenderのアニメーションシステムに完全対応。任意のレイヤーにキーフレームを追加し、タイムラインに沿ってライトテクスチャをスムーズにアニメーション。',
+      '#animation .section-inner > p': '<strong style="color:var(--white);">ライトオブジェクトはそのまま。</strong> 独立したレイヤーアニメーションで、1つのライトだけで複雑なシーンライティングを実現。',
+      '#animation .under-video-desc': '<strong style="color:var(--white);">光はそのままに。</strong> レイヤーの独立したアニメーションにより、たった1つのライトだけで複雑なシーンライティングを実現できる——複数のライトは必要ない。',
+      // Pricing
+      '#pricing h2': 'バージョンを選択',
+      '#pricing > div > p:first-of-type': '買い切り。生涯アップデート。',
+      // Lite card
+      '#pricing li': null, // handled separately
+      // Fund
+      '#fund h3': 'すべての購入がBlenderを支えます',
+      '#fund > p': 'すべての売上の一部は<span style="background: linear-gradient(90deg, #ffefae, #edff87);-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-weight: 600;">Blender Development Fund</span>に寄付され、Blenderを無料でオープンソースに保つ人々を支援しています。',
+      // Companion
+      '#companion h3': 'パーフェクトコンパニオン <small>❤️</small>',
+      '#companion .companion-grid > div:first-child > p': 'ライト設定を完全にコントロール — 配置、強度、色、プリセットライブラリからのゴボ切り替え。どのライトがあり、どう動くかを管理します。',
+      '#companion .companion-grid > div:last-child > p': 'ライト自体を完全にコントロール — 思い通りの場所に光をペイント。光が何を投影し、どうシーンを形作るかを定義します。',
+      '#companion > div > div > p:last-of-type': '2つ合わせれば、シーン全体のセットアップから最も細かいアーティスティックなディテールまで、ライティングのすべてをカバーします。',
+      // Upcoming
+      '#upcoming .section-badge': 'ロードマップ',
+      '#upcoming .section-title': '新機能',
+      '#upcoming .section-desc': '現在開発中の新機能でLight Painterをさらに強力に。リリース予定：6〜9ヶ月。',
+      // FAQ
+      '#faq .section-badge': 'よくある質問',
+      '#faq h2': 'FAQ',
+      // Footer
+      'footer > p:first-of-type': 'これは本物の光…あなたがペイントできる。',
+      'footer > p:last-of-type': 'Blender アドオン · Cycles · Spot & Area ライト',
+      // Other tools
+      '.section-inner > .section-badge:last-of-type': 'その他のツール',
+      // Pricing descriptions
+      '.lite-desc': 'ブラシペイントとレイヤーの基本セット — ライトペインティングを始めるのに最適。',
+      '.full-desc': '完全なツールキット — すべてのツール、すべての設定、制限なし。',
+      '.full-plus': 'Liteの全機能に加えて：',
+    },
+    ko: {
+      '.promo-sale span:not(:has(small))': '50% 할인 — 세일 — 4월 23일까지 — 마지막 기회',
+      '#hero .title:not(.gradient-text)': '조명과 싸우지 마세요.',
+      '#hero .gradient-text': '빛을 그리세요.',
+      '.hero-sub': '최초의 Blender 애드온. 브러시, 그라데이션, 선택, 레이어로 뷰포트에서 직접 직관적으로 조명을 페인팅합니다.',
+      '.hero-compat': 'Cycles 렌더 엔진 지원 · Spot & Area 조명',
+      '#hero > p:nth-of-type(1)': 'Blender의 조명 작업은 간접적이고 답답합니다 — 위치, 크기, 출력 조정, 고보 교체를 원하는 분위기가 나올 때까지 반복.',
+      '#hero > p:nth-of-type(2)': '<strong>Light Painter가 모든 것을 바꿉니다.</strong> <span style="font-weight: 300;">씬 위에 직접 빛을 페인팅하세요. 모든 스트로크가 실시간으로 뷰포트에 나타납니다. 레이어, 블렌드 모드, 비파괴 컨트롤로 완벽한 창작 도구가 됩니다.</span>',
+      '#hero > p:nth-of-type(3)' : 'Light Painter が 모든 것을 바꾼다. 씬에 직접 빛으로 그린다——모든 스트로크가 실시간으로 뷰포트에 반영된다. 라이트는 레이어, 블렌드 모드, 비파괴 컨트롤을 갖춘 완전히 편집 가능한 크리에이티브 툴이 된다. 직관적이고, 표현력 있고, 재미있다.',
+      '#brush .section-badge': '01 — 브러시 페인팅',
+      '#brush .section-title': 'Photoshop처럼<br><span class="hl gradient-text1">빛을 그리세요</span>',
+      '#brush .section-desc': '브러시를 선택하고 크기, 경도, 강도, 플로우, 폴오프를 조정한 후 뷰포트에서 직접 페인팅. 지우기 모드로 빠르게 수정.',
+      '#gradient .section-badge': '02 — 그라데이션 페인팅',
+      '#gradient .section-title': '<span class="hl gradient-text2">그라데이션</span> 라이트,<br>무한한 창의성',
+      '#gradient .section-desc': '드래그로 아름다운 선형 또는 방사형 그라데이션을 씬에 적용. 소프트 폴오프, 드라마틱 비네트, 부드러운 컬러 워시 — 블렌드 모드로 겹쳐 복잡한 효과를.',
+      '#gradient .section-inner > p': '드래그로 방향 설정, 선형과 방사형 전환. 블렌드 모드를 결합하면 가능성은 무한합니다.',
+      '#gradient .under-video-desc': '드래그로 방향을 설정하고, 리니어와 래디얼을 전환한다. 다양한 블렌드 모드를 조합하면——가능성은 정말 무궁무진하다.',
+      '#selection .section-badge': '03 — 정밀 선택',
+      '#selection .section-title': '영역을 정의하고<br><span class="hl">빛을 제어하세요.</span>',
+      '#selection .section-desc': '사각형, 올가미, 폴리라인, 브러시 선택 — 원하는 곳에만 페인팅, 채우기, 지우기. 뷰포트에서 텍셀 수준의 정밀도.',
+      '#layers .section-badge': '04 — 레이어 시스템',
+      '#layers .section-title': '실수 걱정 없이<br><span class="hl">페인팅하세요</span>',
+      '#layers .section-desc': '필요한 만큼 레이어를 만들고 빛을 독립 레이어로 분리. 순서 변경, 숨기기, 블렌드 모드 변경, 변형, 삭제 — 언제든. Photoshop과 같은 레이어, 이제 빛을 위해.',
+      '#layers .section-inner > div > p': '각 레이어는 독립적. 큰 형태는 한 레이어에, 디테일은 다른 레이어에. 레이어별 실행취소. 복제해서 A/B 테스트. 가시성 토글로 비교.',
+      '#gobos .section-title': '고보가 있으신가요? <span class="hl" style="background: linear-gradient(135deg, #ffd166, #ff6b35, #c77dff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;white-space: nowrap;">드롭하세요.</span>',
+      '#gobos .section-desc': 'PNG, JPG, EXR 고보를 조명에 직접 드롭. 즉시 편집 가능한 레이어가 됩니다.',
+      '#gobos .section-inner > p': '기존 텍스처를 레이어에 적용. 브러시로 지우고, 그라데이션을 적용하고, 블렌드 모드를 바꾸고, 애니메이션하세요.',
+      '#gobos .under-video-desc': '텍스처를 라이트 레이어에 적용한다. 브러시로 모서리를 지우고, 그라디언트를 적용하고, 블렌드 모드를 바꾸고, 애니메이션을 넣는다. 기성 고보는 더 이상 정적인 이미지가 아니다——창조의 출발점이 된다.',
+      '#animation .section-title': '레이어에 키프레임,<br><span class="hl">빛을 애니메이션</span>',
+      '#animation .section-desc': 'Light Painter는 Blender 애니메이션 시스템을 완벽 지원. 레이어에 키프레임을 추가하고 타임라인에 따라 부드럽게 애니메이션.',
+      '#animation .section-inner > p': '<strong style="color:var(--white);">라이트 오브젝트는 그대로.</strong> 독립적인 레이어 애니메이션으로 하나의 조명만으로 복잡한 씬 라이팅 구현.',
+      '#animation .under-video-desc': '<strong style="color:var(--white);">빛은 그대로.</strong> 레이어의 독립적인 애니메이션으로 단 하나의 라이트만으로 복잡한 씬 라이팅을 구현할 수 있다——여러 개의 라이트는 필요 없다.',
+      '#pricing h2': '버전 선택',
+      '#pricing > div > p:first-of-type': '일회성 구매. 평생 업데이트.',
+      '#fund h3': '모든 구매가 Blender를 지원합니다',
+      '#fund > p': '모든 판매 수익의 일부는 <span style="background: linear-gradient(90deg, #ffefae, #edff87);-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-weight: 600;">Blender Development Fund</span>에 기부되어 Blender를 무료 오픈소스로 유지하는 사람들을 지원합니다.',
+      '#companion h3': '퍼펙트 컴패니언 <small>❤️</small>',
+      '#companion .companion-grid > div:first-child > p': '조명 설정 완벽 제어 — 위치, 강도, 색상, 프리셋 고보 교체. 어떤 조명이 있고 어떻게 작동하는지 관리합니다.',
+      '#companion .companion-grid > div:last-child > p': '빛 자체를 완벽 제어 — 원하는 곳에 정확히 빛을 페인팅. 빛이 무엇을 투사하고 씬을 어떻게 형성하는지 정의합니다.',
+      '#companion > div > div > p:last-of-type': '둘을 합치면 씬 전체 설정부터 가장 섬세한 디테일까지 조명의 모든 측면을 커버합니다.',
+      '#upcoming .section-badge': '로드맵',
+      '#upcoming .section-title': '새로운 기능',
+      '#upcoming .section-desc': '더 강력한 Light Painter를 위해 새 기능을 개발 중입니다. 예상 출시: 6~9개월.',
+      '#faq .section-badge': '자주 묻는 질문',
+      '#faq h2': 'FAQ',
+      'footer > p:first-of-type': '이것은 진짜 빛… 당신이 그릴 수 있는.',
+      'footer > p:last-of-type': 'Blender 애드온 · Cycles · Spot & Area 조명',
+    }
+  };
+
+  // FAQ translations
+  const faqT = {
+    ja: [
+      ['Light Painterは何にペイントしますか？', 'ライトのゴボテクスチャ（SpotやAreaライトが投影する画像）にペイントします。シーンのオブジェクトやメッシュにはペイントしません。ライト自体がキャンバスなので、オブジェクトのマテリアルやエミッションの制限はありません。'],
+      ['Blender Extensions Platformの「Light Painter」と同じですか？', 'いいえ、別の開発者による完全に別のアドオンです。Blender Extensionsのものはサーフェスをクリックしてライトを配置するツール。こちらはライト自体をマスク・造形し、どの領域が照らされるかを完全にコントロールします。'],
+      ['どの角度からでもペイントできますか？', 'はい。ビューポートでマウスカーソルを使ってどの角度からでもペイント可能。Camera Space（画面上の見た目通り）とLight Space（ライト自体の投影基準）の2つのモードがあります。'],
+      ['セットアップ方法は？先にライトを配置しますか？', 'はい。通常通りSpotまたはAreaライトを配置し、ライトを選択してペイント開始。特別なセットアップ不要、ノード設定不要。'],
+      ['カラーでペイントできますか？', '好きな色を選んでペイント。1つのレイヤーでも別々のレイヤーでもOK。各レイヤーにブレンドモードがあり、色の混ざり方を完全にコントロールできます。'],
+      ['影のソフトさやライトコントロールに制限は？', 'ありません。ゴボテクスチャにペイントしているので、Cyclesエンジンの機能はすべて通常通り動作します。'],
+      ['UnityやUnrealにエクスポートできますか？', 'Light PainterはBlenderのライトシェーダーノード上に構築されたレイヤースタックを使用するため、マルチレイヤー設定はそのままエクスポートできません。レイヤーを1枚の画像に統合し、エンジン側でライトクッキーとして割り当てるワークフローを推奨します。'],
+      ['複数のライトで動作しますか？', 'はい。各ライトは独自のレイヤースタックを持ち、独立してペイントできます。'],
+      ['ジオメトリノードの設定は必要ですか？', 'いいえ。アドオンをインストールし、ライトを選んでペイント開始するだけです。'],
+      ['対応するBlenderバージョンは？', 'Windows、macOS、LinuxのBlender 3.6.x。CyclesレンダーエンジンでSpotとAreaライトに対応。'],
+      ['商用利用できますか？', 'はい。1ライセンスで個人・商用利用が可能です。'],
+      ['アップデートはどうなりますか？', '買い切りで生涯アップデート付き。将来のアップデートはすべて無料です。'],
+      ['ビューポートが重くなりますか？', 'リアルタイムで動作し、レスポンシブに保つよう設計されています。レイヤー合成はライトごとに効率的に処理されます。'],
+    ],
+    ko: [
+      ['Light Painter는 무엇에 페인팅하나요?', '라이트의 고보 텍스처(Spot 또는 Area 조명이 투사하는 이미지)에 페인팅합니다. 씬 오브젝트나 메시에는 페인팅하지 않습니다. 조명 자체가 캔버스입니다.'],
+      ['Blender Extensions의 "Light Painter"와 같은 건가요?', '아닙니다. 다른 개발자가 만든 완전히 별개의 애드온입니다. Blender Extensions의 것은 표면을 클릭해서 조명을 배치하는 도구이고, 이것은 조명 자체를 마스킹하고 형성합니다.'],
+      ['어떤 각도에서든 페인팅할 수 있나요?', '네. 뷰포트에서 마우스로 어떤 각도에서든 페인팅 가능합니다. Camera Space(화면에 보이는 대로)와 Light Space(조명 자체의 투사 기준) 두 가지 모드가 있습니다.'],
+      ['설정은 어떻게 하나요? 조명을 먼저 배치하나요?', '네. 보통처럼 Spot 또는 Area 조명을 배치한 후 선택하고 페인팅을 시작하세요. 특별한 설정이나 노드 연결 불필요.'],
+      ['컬러로 페인팅할 수 있나요?', '원하는 색을 골라 페인팅하세요. 하나의 레이어에서도 별도 레이어에서도 가능. 각 레이어에 블렌드 모드가 있어 색상 혼합을 완전히 제어합니다.'],
+      ['그림자 부드러움이나 조명 제어에 제한이 있나요?', '없습니다. 고보 텍스처에 페인팅하므로 Cycles 엔진의 모든 기능이 정상 작동합니다.'],
+      ['Unity나 Unreal로 내보낼 수 있나요?', 'Light Painter는 Blender의 조명 셰이더 노드 위에 구축된 레이어 스택을 사용하므로 멀티레이어 설정은 직접 전송되지 않습니다. 레이어를 하나의 이미지로 병합한 후 엔진에서 라이트 쿠키로 할당하는 워크플로를 권장합니다.'],
+      ['여러 조명에서 작동하나요?', '네. 각 조명이 자체 레이어 스택을 가지며 독립적으로 페인팅할 수 있습니다.'],
+      ['지오메트리 노드 설정이 필요한가요?', '아닙니다. 애드온을 설치하고 조명을 선택해 바로 페인팅을 시작하세요.'],
+      ['지원하는 Blender 버전은?', 'Windows, macOS, Linux의 Blender 3.6.x. Cycles 렌더 엔진, Spot 및 Area 조명 지원.'],
+      ['상업적으로 사용할 수 있나요?', '네. 하나의 라이선스로 개인 및 상업적 사용이 가능합니다.'],
+      ['업데이트는 어떻게 되나요?', '일회성 구매로 평생 업데이트. 모든 향후 업데이트는 무료입니다.'],
+      ['뷰포트가 느려지나요?', '실시간으로 작동하며 반응성을 유지하도록 설계되었습니다. 레이어 합성은 조명별로 효율적으로 처리됩니다.'],
+    ]
+  };
+
+  // Feature chip translations by section
+  const chipT = {
+    ja: {
+      brush: ['サイズ調整', '硬さ', '強度', 'フロー制御', '消しゴムモード'],
+      gradient: ['リニアグラデーション', 'ラジアルグラデーション', 'カラーモード', 'ブラーエフェクト'],
+      selection: ['矩形選択', '投げ縄選択', 'ポリライン選択', 'ブラシ選択'],
+      layers: ['無制限レイヤー', 'ブレンドモード', 'カラーフィル', 'テクスチャフィル', 'オフセット · 回転 · スケール'],
+      gobos: ['PNG · JPG · EXR', 'レイヤーとして編集', 'レイヤーと合成'],
+      animation: ['レイヤー別キーフレーム', '独立アニメーション', '非破壊'],
+    },
+    ko: {
+      brush: ['크기 조절', '경도', '강도', '플로우 제어', '지우기 모드'],
+      gradient: ['선형 그라데이션', '방사형 그라데이션', '컬러 모드', '블러 효과'],
+      selection: ['사각형 선택', '올가미 선택', '폴리라인 선택', '브러시 선택'],
+      layers: ['무제한 레이어', '블렌드 모드', '컬러 채우기', '텍스처 채우기', '오프셋 · 회전 · 스케일'],
+      gobos: ['PNG · JPG · EXR', '레이어로 편집', '레이어와 혼합'],
+      animation: ['레이어별 키프레임', '독립 애니메이션', '비파괴'],
+    }
+  };
+
+  // Pricing card translations
+  const pricingT = {
+    ja: {
+      liteLabel: 'Lite (Light Space)',
+      liteDesc: 'ブラシペイントとレイヤーの基本セット — ライトペインティングを始めるのに最適。',
+      liteItems: ['✓ \u00A0ブラシツール（ペイント＆消去）', '✓ \u00A0レイヤーシステム', '✓ \u00A0カラーフィル', '✓ \u00A0アンドゥ/リドゥ対応'],
+      fullLabel: 'Full (Light & Camera Space)',
+      fullBadge: 'おすすめ',
+      fullDesc: '完全なツールキット — すべてのツール、すべての設定、制限なし。',
+      fullPlus: 'Liteの全機能に加えて：',
+      fullItems: ['✓ \u00A0グラデーションツール（リニア＆ラジアル）', '✓ \u00A0選択ツール（矩形、投げ縄、ポリライン、ブラシ）', '✓ \u00A0ペイントサーフェスセレクター', '✓ \u00A0後処理（ブラー、エッジ保護）', '✓ \u00A0アニメーション対応', '✓ \u00A0ゴボ → レイヤー', '✓ \u00A0スマートプレビュー', 'その他多数...'],
+      docLink: '各バージョンの全機能一覧は<a style="white-space: nowrap;" href="https://superhivemarket.com/products/light-painter/docs" target="_blank">ドキュメント ↗</a>をご覧ください',
+    },
+    ko: {
+      liteLabel: 'Lite (Light Space)',
+      liteDesc: '브러시 페인팅과 레이어 기본 세트 — 라이트 페인팅을 시작하기에 좋습니다.',
+      liteItems: ['✓ \u00A0브러시 도구 (페인트 & 지우기)', '✓ \u00A0레이어 시스템', '✓ \u00A0컬러 채우기', '✓ \u00A0실행취소/다시실행 지원'],
+      fullLabel: 'Full (Light & Camera Space)',
+      fullBadge: '추천',
+      fullDesc: '완전한 툴킷 — 모든 도구, 모든 설정, 제한 없음.',
+      fullPlus: 'Lite의 모든 기능 포함, 추가로:',
+      fullItems: ['✓ \u00A0그라데이션 도구 (선형 & 방사형)', '✓ \u00A0선택 도구 (사각형, 올가미, 폴리라인, 브러시)', '✓ \u00A0페인트 서피스 셀렉터', '✓ \u00A0후처리 (블러, 에지 보호)', '✓ \u00A0애니메이션 지원', '✓ \u00A0고보 → 레이어', '✓ \u00A0스마트 프리뷰', '그 외 다수...'],
+      docLink: '각 버전의 전체 기능 목록은 <a style="white-space: nowrap;" href="https://superhivemarket.com/products/light-painter/docs" target="_blank">문서 ↗</a>를 참조하세요',
+    }
+  };
+
+  // Upcoming features translations
+  const upcomingT = {
+    ja: [
+      ['EEVEE対応', 'ライトペインティングをEEVEEに。異なるエンジンでも同じ創作ワークフロー。'],
+      ['テクスチャブラシ', '画像ベースのブラシチップで葉やカスタムシェイプなどの有機的パターンをペイント。'],
+      ['ブラーツール', '結果をぼかして、より滑らかな光の遷移を実現。'],
+      ['スメアツール', 'ペイントをやり直すことなく直感的に光を再形成。'],
+      ['高度なグラデーション制御', 'カラーストップの追加・削除、ドラッグで位置調整、マルチポイントの精密制御。'],
+      ['ラジアルフォーカルシフト', 'ラジアルグラデーションの焦点をオフセットして非対称なフォールオフ効果を。'],
+    ],
+    ko: [
+      ['EEVEE 지원', '라이트 페인팅을 EEVEE에서도. 다른 엔진, 같은 창작 워크플로우.'],
+      ['텍스처 브러시', '이미지 기반 브러시 팁으로 나뭇잎, 커스텀 셰이프 등 유기적 패턴을 페인팅.'],
+      ['블러 도구', '결과를 블러 처리해 더 부드러운 라이트 전환을 구현.'],
+      ['스미어 도구', '페인트를 다시 하지 않고도 직관적으로 빛을 재형성.'],
+      ['고급 그라데이션 제어', '컬러 스톱 추가/제거, 드래그로 위치 조정, 멀티포인트 정밀 제어.'],
+      ['방사형 포컬 시프트', '방사형 그라데이션의 초점을 오프셋해 비대칭 폴오프 효과.'],
+    ]
+  };
+
+  // Video YT link translations
+  const ytLinkT = {
+    ja: 'GIFプレビュー — <a href="https://x.com/LightPainterPro" target="_blank">X (Twitter)で高画質を見る ↗</a>',
+    ko: 'GIF 미리보기 — <a href="https://x.com/LightPainterPro" target="_blank">X (Twitter)에서 고화질 보기 ↗</a>',
+  };
+
+  // "More Tools" section
+  const moreToolsT = {
+    ja: {
+      badge: 'その他のツール',
+      title: 'Geometry Nodesを使ってますか？',
+      desc: '新しいPreview-it™ アドオン — Geometryツリー内のすべてをリアルタイムプレビュー：ジオメトリ形状、フィールド値、アトリビュートフロー、選択マスクなど。ビューポートを何度も確認したり、一時的なビューアを接続する必要はありません。',
+      btn: '🔥 ベータアクセス: <strong>60% OFF</strong>',
+    },
+    ko: {
+      badge: '추가 도구',
+      title: 'Geometry Nodes를 사용하시나요?',
+      desc: '새로운 Preview-it™ 애드온 — Geometry 트리 내 모든 것을 실시간 미리보기: 지오메트리 형태, 필드 값, 어트리뷰트 플로우, 선택 마스크 등. 뷰포트를 반복 확인하거나 임시 뷰어를 연결할 필요 없이.',
+      btn: '🔥 베타 액세스: <strong>60% OFF</strong>',
+    }
+  };
+
+  // Store original English content
+  const originals = {};
+  const faqOriginals = [];
+  const chipOriginals = {};
+  const pricingOriginals = {};
+  const upcomingOriginals = [];
+  const ytLinkOriginals = [];
+  const moreToolsOriginals = {};
+  let currentLang = 'en';
+
+  function storeOriginals() {
+    const allKeys = new Set([...Object.keys(T.ja), ...Object.keys(T.ko)]);
+    allKeys.forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) originals[sel] = el.innerHTML;
+    });
+    // FAQ
+    document.querySelectorAll('.faq-item').forEach((item, i) => {
+      const s = item.querySelector('summary');
+      const p = item.querySelector('p');
+      if (s && p) faqOriginals[i] = { summary: s.innerHTML, p: p.innerHTML };
+    });
+    // Feature chips by section
+    ['brush','gradient','selection','layers','gobos','animation'].forEach(sec => {
+      const section = document.getElementById(sec);
+      if (!section) return;
+      chipOriginals[sec] = [];
+      section.querySelectorAll('.feature-chip').forEach(c => chipOriginals[sec].push(c.textContent));
+    });
+    // Pricing
+    const pricingSec = document.getElementById('pricing');
+    if (pricingSec) {
+      const cards = pricingSec.querySelectorAll('[style*="border-radius: 20px"]');
+      if (cards[0]) {
+        pricingOriginals.liteLabel = cards[0].querySelector('div:first-child')?.innerHTML;
+        pricingOriginals.liteDesc = cards[0].querySelector('p')?.innerHTML;
+        pricingOriginals.liteItems = [];
+        cards[0].querySelectorAll('li').forEach(li => pricingOriginals.liteItems.push(li.innerHTML));
+      }
+      if (cards[1]) {
+        pricingOriginals.fullBadge = cards[1].querySelector('[style*="position:absolute"]')?.textContent;
+        pricingOriginals.fullLabel = cards[1].querySelector('div:nth-child(2)')?.innerHTML;
+        pricingOriginals.fullDesc = cards[1].querySelectorAll('p')[0]?.innerHTML;
+        pricingOriginals.fullPlus = cards[1].querySelectorAll('p')[1]?.innerHTML;
+        pricingOriginals.fullItems = [];
+        cards[1].querySelectorAll('li').forEach(li => pricingOriginals.fullItems.push(li.innerHTML));
+      }
+      const docP = pricingSec.querySelector('p[style*="font-family"]');
+      if (docP) pricingOriginals.docLink = docP.innerHTML;
+    }
+    // Upcoming
+    document.querySelectorAll('.upcoming-list li').forEach(li => {
+      upcomingOriginals.push(li.innerHTML);
+    });
+    // YT links
+    document.querySelectorAll('.video-yt-link').forEach(p => ytLinkOriginals.push(p.innerHTML));
+    // More Tools
+    const mtSections = document.querySelectorAll('.section-inner');
+    const lastSection = mtSections[mtSections.length - 1];
+    if (lastSection) {
+      const badge = lastSection.querySelector('.section-badge');
+      const h2 = lastSection.querySelector('h2');
+      const p = lastSection.querySelector('p');
+      const btn = lastSection.querySelector('.common-toggle-btn');
+      if (badge) moreToolsOriginals.badge = badge.textContent;
+      if (h2) moreToolsOriginals.title = h2.innerHTML;
+      if (p) moreToolsOriginals.desc = p.innerHTML;
+      if (btn) moreToolsOriginals.btn = btn.innerHTML;
+    }
+  }
+
+  function applyLang(lang) {
+    if (lang === 'en') {
+      // Restore all originals
+      for (const sel in originals) {
+        const el = document.querySelector(sel);
+        if (el) el.innerHTML = originals[sel];
+      }
+      document.querySelectorAll('.faq-item').forEach((item, i) => {
+        if (faqOriginals[i]) {
+          item.querySelector('summary').innerHTML = faqOriginals[i].summary;
+          item.querySelector('p').innerHTML = faqOriginals[i].p;
+        }
+      });
+      for (const sec in chipOriginals) {
+        const section = document.getElementById(sec);
+        if (!section) continue;
+        section.querySelectorAll('.feature-chip').forEach((c, i) => {
+          if (chipOriginals[sec][i]) c.textContent = chipOriginals[sec][i];
+        });
+      }
+      // Pricing restore
+      const pricingSec = document.getElementById('pricing');
+      if (pricingSec) {
+        const cards = pricingSec.querySelectorAll('[style*="border-radius: 20px"]');
+        if (cards[0] && pricingOriginals.liteLabel != null) {
+          cards[0].querySelector('div:first-child').innerHTML = pricingOriginals.liteLabel;
+          cards[0].querySelector('p').innerHTML = pricingOriginals.liteDesc;
+          cards[0].querySelectorAll('li').forEach((li, i) => { if (pricingOriginals.liteItems[i]) li.innerHTML = pricingOriginals.liteItems[i]; });
+        }
+        if (cards[1] && pricingOriginals.fullBadge != null) {
+          cards[1].querySelector('[style*="position:absolute"]').textContent = pricingOriginals.fullBadge;
+          cards[1].querySelectorAll('p')[0].innerHTML = pricingOriginals.fullDesc;
+          cards[1].querySelectorAll('p')[1].innerHTML = pricingOriginals.fullPlus;
+          cards[1].querySelectorAll('li').forEach((li, i) => { if (pricingOriginals.fullItems[i]) li.innerHTML = pricingOriginals.fullItems[i]; });
+        }
+        const docP = pricingSec.querySelector('p[style*="font-family"]');
+        if (docP) docP.innerHTML = pricingOriginals.docLink;
+      }
+      // Upcoming restore
+      document.querySelectorAll('.upcoming-list li').forEach((li, i) => {
+        if (upcomingOriginals[i]) li.innerHTML = upcomingOriginals[i];
+      });
+      // YT links restore
+      document.querySelectorAll('.video-yt-link').forEach((p, i) => {
+        if (ytLinkOriginals[i]) p.innerHTML = ytLinkOriginals[i];
+      });
+      // More Tools restore
+      const mtSections = document.querySelectorAll('.section-inner');
+      const lastSection = mtSections[mtSections.length - 1];
+      if (lastSection && moreToolsOriginals.badge) {
+        const badge = lastSection.querySelector('.section-badge');
+        const h2 = lastSection.querySelector('h2');
+        const p = lastSection.querySelector('p');
+        const btn = lastSection.querySelector('.common-toggle-btn');
+        if (badge) badge.textContent = moreToolsOriginals.badge;
+        if (h2) h2.innerHTML = moreToolsOriginals.title;
+        if (p) p.innerHTML = moreToolsOriginals.desc;
+        if (btn) btn.innerHTML = moreToolsOriginals.btn;
+      }
+    } else {
+      const dict = T[lang];
+      if (!dict) return;
+      // Main selectors
+      for (const sel in dict) {
+        if (dict[sel] === null) continue;
+        const el = document.querySelector(sel);
+        if (el) el.innerHTML = dict[sel];
+      }
+      // Promo spans (multiple)
+      const promoKey = '.promo-sale span:not(:has(small))';
+      if (dict[promoKey]) {
+        document.querySelectorAll('.promo-sale span').forEach(s => {
+          if (!s.querySelector('small') && s.textContent.trim() !== '🔥') s.textContent = dict[promoKey];
+        });
+      }
+      // Feature chips
+      const chips = chipT[lang];
+      if (chips) {
+        for (const sec in chips) {
+          const section = document.getElementById(sec);
+          if (!section) continue;
+          section.querySelectorAll('.feature-chip').forEach((c, i) => {
+            if (chips[sec][i]) c.textContent = chips[sec][i];
+          });
+        }
+      }
+      // FAQ
+      const faq = faqT[lang];
+      if (faq) {
+        document.querySelectorAll('.faq-item').forEach((item, i) => {
+          if (faq[i]) {
+            item.querySelector('summary').textContent = faq[i][0];
+            item.querySelector('p').innerHTML = faq[i][1];
+          }
+        });
+      }
+      // Pricing
+      const pr = pricingT[lang];
+      if (pr) {
+        const pricingSec = document.getElementById('pricing');
+        if (pricingSec) {
+          const cards = pricingSec.querySelectorAll('[style*="border-radius: 20px"]');
+          if (cards[0]) {
+            cards[0].querySelector('p').textContent = pr.liteDesc;
+            cards[0].querySelectorAll('li').forEach((li, i) => { if (pr.liteItems[i]) li.innerHTML = pr.liteItems[i]; });
+          }
+          if (cards[1]) {
+            cards[1].querySelector('[style*="position:absolute"]').textContent = pr.fullBadge;
+            cards[1].querySelectorAll('p')[0].textContent = pr.fullDesc;
+            cards[1].querySelectorAll('p')[1].textContent = pr.fullPlus;
+            cards[1].querySelectorAll('li').forEach((li, i) => { if (pr.fullItems[i]) li.innerHTML = pr.fullItems[i]; });
+          }
+          const docP = pricingSec.querySelector('p[style*="font-family"]');
+          if (docP) docP.innerHTML = pr.docLink;
+        }
+      }
+      // Upcoming
+      const upc = upcomingT[lang];
+      if (upc) {
+        document.querySelectorAll('.upcoming-list li').forEach((li, i) => {
+          if (upc[i]) li.innerHTML = '<strong style="color:var(--white)">' + upc[i][0] + '</strong> — ' + upc[i][1];
+        });
+      }
+      // YT links
+      if (ytLinkT[lang]) {
+        document.querySelectorAll('.video-yt-link').forEach(p => { p.innerHTML = ytLinkT[lang]; });
+      }
+      // More Tools
+      const mt = moreToolsT[lang];
+      if (mt) {
+        const mtSections = document.querySelectorAll('.section-inner');
+        const lastSection = mtSections[mtSections.length - 1];
+        if (lastSection) {
+          const badge = lastSection.querySelector('.section-badge');
+          const h2 = lastSection.querySelector('h2');
+          const p = lastSection.querySelector('p');
+          const btn = lastSection.querySelector('.common-toggle-btn');
+          if (badge) badge.textContent = mt.badge;
+          if (h2) h2.innerHTML = mt.title;
+          if (p) p.innerHTML = mt.desc;
+          if (btn) btn.innerHTML = mt.btn;
+        }
+      }
+    }
+    currentLang = lang;
+  }
+
+  // Init
+  storeOriginals();
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.color = 'rgba(255,255,255,0.4)';
+      });
+      this.style.background = 'rgba(255,107,53,0.2)';
+      this.style.color = '#ff6b35';
+      applyLang(this.dataset.lang);
+    });
+  });
+})();
 
 // ─── SCROLL REVEAL ───
 const observer = new IntersectionObserver((entries) => {
