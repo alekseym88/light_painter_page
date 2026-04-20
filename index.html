@@ -65,7 +65,7 @@ a { color: var(--accent2); text-decoration: none; }
 
 
 #hero-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1;
+  position: absolute; inset: 0; width: 100%; height: 100%;
 }
 .hero-content { position: relative; z-index: 2; max-width: 900px; }
 .hero-badge {
@@ -75,11 +75,11 @@ a { color: var(--accent2); text-decoration: none; }
   text-transform: uppercase; color: var(--accent1); margin-bottom: 32px;
 }
 h2{
-  font-size: clamp(24px, 5vw, 48px);
+  font-size: clamp(28px, 5vw, 48px);
 }
 
 h1{
-  font-size: clamp(48px, 5vw, 96px); 
+  font-size: clamp(36px, 7vw, 96px); 
 }
 
 .title {
@@ -108,7 +108,7 @@ h1{
 }
 .hero-video-wrap {
   height: 100%;
-  max-height: 500px;
+  max-height: 45vw;
   height: 450px;
   position: relative; width: 100%; max-width: 850px; margin: 0 auto;
   border-radius: 16px; overflow: hidden;
@@ -155,9 +155,10 @@ h1{
 .hero-compat span { color: var(--accent1); }
 
 /* ─── SECTION BASE ─── */
-.section {
+section {
   position: relative; padding: 48px; overflow: hidden;
 }
+
 .section-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
 .section-badge {
   display: inline-block; padding: 5px 14px; border-radius: 100px;
@@ -231,7 +232,7 @@ h1{
 .common-card:hover { border-color: rgba(199,125,255,0.3); }
 .common-card h3 { font-size: 18px; margin-bottom: 12px; font-weight: 700; }
 .common-card h3 .icon { margin-right: 8px; }
-.common-card p { font-size: 15px; color: var(--text-dim); line-height: 1.7; }
+.common-card p { font-size: 15px; color: var(--text-dim); }
 
 /* ─── SELECTION SECTION ─── */
 #selection .section-badge { border: 1px solid rgba(57,255,20,0.3); color: var(--accent4); background: rgba(57,255,20,0.08); }
@@ -246,14 +247,58 @@ h1{
 
 /* ─── UPCOMING ─── */
 #upcoming .section-badge { border: 1px solid rgba(255,255,255,0.15); color: var(--text-dim); }
-.upcoming-list { list-style: none; max-width: 700px; }
+.upcoming-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
 .upcoming-list li {
-  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-  display: flex; align-items: flex-start; gap: 16px; font-size: 16px;
+  position: relative;
+  padding: 24px 24px 24px 52px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.upcoming-list li:hover {
+  border-color: rgba(0,229,255,0.3);
+  background: rgba(0,229,255,0.03);
+  transform: translateY(-2px);
 }
 .upcoming-list li::before {
-  content: '→'; color: var(--accent2); font-family: 'Space Mono', monospace;
-  flex-shrink: 0; margin-top: 2px;
+  content: '→';
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: var(--accent2);
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.upcoming-list li strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+/* Hide the em-dash separator since name is now on its own line */
+.upcoming-list li br + span,
+.upcoming-list li .dash { display: none; }
+
+@media (max-width: 640px) {
+  .upcoming-list { grid-template-columns: 1fr; gap: 12px; }
+  .upcoming-list li {
+    padding: 20px 20px 20px 46px;
+    font-size: 14.5px;
+  }
+  .upcoming-list li::before { top: 20px; left: 20px; }
+  .upcoming-list li strong { font-size: 15px; }
 }
 
 /* ─── FOOTER ─── */
@@ -264,7 +309,7 @@ footer {
 footer .footer-logo { font-family: 'Unbounded', 'Syne', sans-serif; font-weight: 800; font-size: 24px; color: var(--white); margin-bottom: 16px; }
 footer .footer-logo span { background: var(--gradient1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 footer p { color: var(--text-dim); font-size: 14px; }
-footer .footer-links { margin-top: 24px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+footer .footer-links { margin-top: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
 footer .footer-links a { font-size: 13px; color: var(--text-dim); font-family: 'Space Mono', monospace; }
 footer .footer-links a:hover { color: var(--white); }
 
@@ -433,8 +478,8 @@ footer .footer-links a:hover { color: var(--white); }
 
 .faq-list { display: flex; flex-direction: column; gap: 12px; }
 .faq-item {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: 12px;
   overflow: hidden;
   transition: border-color 0.2s, background 0.2s;
@@ -492,28 +537,133 @@ footer .footer-links a:hover { color: var(--white); }
   padding: 4px;
 }
 
+#end-zone {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1000px;
+  padding: 60px 32px 80px;
+  text-align: center;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+#end-zone.is-visible {
+  opacity: 1!important;
+  visibility: visible!important;
+  z-index: 1!important;
+}
+
+
+#end-zone .end-zone-scrolltop { pointer-events: auto; }
+#end-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,107,53,0.12), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,229,255,0.10), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(199,125,255,0.08), transparent 50%);
+  filter: blur(20px);
+  animation: endGlow 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes endGlow {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(2%,-2%) scale(1.05); }
+  100% { transform: translate(-2%,2%) scale(1); }
+}
+
+.end-zone-sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.35;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+.end-zone-dots {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.end-zone-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+.end-zone-dots span:nth-child(1) { background: var(--accent1); animation-delay: 0s; }
+.end-zone-dots span:nth-child(2) { background: var(--accent5); animation-delay: 0.2s; }
+.end-zone-dots span:nth-child(3) { background: var(--accent4); animation-delay: 0.4s; }
+.end-zone-dots span:nth-child(4) { background: var(--accent2); animation-delay: 0.6s; }
+.end-zone-dots span:nth-child(5) { background: var(--accent3); animation-delay: 0.8s; }
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; box-shadow: 0 0 0 0 currentColor; }
+  50%      { transform: scale(1.4); opacity: 1;   box-shadow: 0 0 20px currentColor; }
+}
+.end-zone-scrolltop {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.end-zone-scrolltop:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  box-shadow: 0 0 30px rgba(0,229,255,0.2);
+  transform: translateY(-2px);
+}
+.end-zone-scrolltop .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.end-zone-scrolltop:hover .arrow { transform: translateY(-3px); }
+
 
 @media (max-width: 768px) {
-  #faq { padding: 60px 20px; }
   .faq-item summary { padding: 18px 20px; font-size: 15px; }
   .faq-item p { padding: 0 20px 20px; font-size: 14px; }
-  
+
 }
 
 @media (max-width: 575.98px) {
 
-  .section {padding: 36px;}
-  #animation .section-header{padding: 78px 28px;}
+  #end-zone { padding: 48px 24px 60px; }
+  .end-zone-sub { font-size: 15px; }
+
+  section {padding: 32px!important;}
+  #animation .section-header{padding: 82px 30px!important;}
+  #hero{
+      padding-left: 32px;
+      padding-right: 32px;
+  }
+  #pricing{padding: 100px 48px 0!important;}
+  #companion{padding: 0!important;}
 
 }
-
 
 
 </style>
 </head>
 <body>
 
-<div class="wrapper" style="overflow-x: hidden;position: relative;">
+<div style="position: relative; height: 100%;">
+
+<div class="wrapper" style="overflow-x: hidden;position: relative;background: var(--black)">
 
 <!-- LANGUAGE SWITCHER -->
 <div id="lang-switcher">
@@ -575,7 +725,7 @@ footer .footer-links a:hover { color: var(--white); }
         allowfullscreen>
     </iframe>
   </div>
-  <p class="hero-compat" style="margin-bottom: 40px;">Works with <span>Cycles</span> · <span>Spot</span> &amp; <span>Area</span> lights</p>
+  <p class="hero-compat" style="margin-bottom: 40px;">Works with <span>Cycles</span> · <span>EEVEE</span> <small>(comming soon)</small> · <span>Spot</span> &amp; <span>Area</span> lights</p>
   
   <p style="color: var(--text); font-size:18px; font-weight: 300;">
       Traditional lighting in Blender feels indirect and frustrating: tweaking position, size, power, swapping gobo textures, adjusting everything over and over until get the mood right.
@@ -787,7 +937,6 @@ footer .footer-links a:hover { color: var(--white); }
 
 </section>
 
-
 <!-- PRICING -->
 <section id="pricing" style="
   padding: 120px 48px 0;
@@ -902,7 +1051,6 @@ footer .footer-links a:hover { color: var(--white); }
 
     <p style="
       font-size: 15px;
-      line-height: 1.7;
       color: var(--text);
       margin: 0 auto;
       position: relative;
@@ -919,14 +1067,13 @@ footer .footer-links a:hover { color: var(--white); }
 </section>
 
 <!-- COMPANION: LIGHT WRANGLER -->
-<section class="section">
+<section class="section" style="overflow: visible;">
 
   <div id="companion" style="padding: 30px 38px;">
   <!-- decorative side accents -->
     
     <div style="margin:0 auto; display:grid; grid-template-columns:1fr; gap:32px; position:relative; z-index:2;">
       
-
       <div>
         
         <h3 style="font-weight:500; color:var(--white); margin-bottom:30px; text-align: center;margin-top: 24px;">
@@ -979,42 +1126,42 @@ footer .footer-links a:hover { color: var(--white); }
 
 </section>
 
-
-
 <!-- UPCOMING FEATURES -->
-<section id="upcoming" class="section">
+<section id="upcoming">
   <div class="section-inner">
     <div class="section-badge">Roadmap</div>
     <h2 class="section-title">New features</h2>
     <p class="section-desc">I'm actively developing new features to make Light Painter even more powerful. Estimated release: 6–9 months.</p>
     <ul class="upcoming-list">
-      <li><strong style="color:var(--white)">EEVEE support</strong> — Bring light painting to EEVEE. Different engine, same creative workflow.</li>
-      <li><strong style="color:var(--white)">Textured Brush</strong> — Paint with image-based brush tips for organic patterns like leaves and custom shapes.</li>
-      <li><strong style="color:var(--white)">Blur Tool</strong> — Blur the result for better and more smooth light transition</li>
-      <li><strong style="color:var(--white)">Smear Tool</strong> — Reshape light intuitively without redoing paint.</li>
-      <li><strong style="color:var(--white)">Advanced Gradient Controls</strong> — Add and remove color stops, drag to reposition them, and fine-tune gradients with multi-point precision.</li>
-      <li><strong style="color:var(--white)">Radial Focal Shift</strong> — Offset the focal point of radial gradients for asymmetric, off-center light falloff effects.</li>
+      <li><strong style="color:var(--white)">EEVEE support</strong>Bring light painting to EEVEE. Different engine, same creative workflow.</li>
+      <li><strong style="color:var(--white)">Textured Brush</strong>Paint with image-based brush tips for organic patterns like leaves and custom shapes.</li>
+      <li><strong style="color:var(--white)">Blur Tool</strong>Blur the result for better and more smooth light transition.</li>
+      <li><strong style="color:var(--white)">Smear Tool</strong>Reshape light intuitively without redoing paint.</li>
+      <li><strong style="color:var(--white)">Advanced Gradient Controls</strong>Add and remove color stops, drag to reposition them, and fine-tune gradients with multi-point precision.</li>
+      <li><strong style="color:var(--white)">Radial Focal Shift</strong>Offset the focal point of radial gradients for asymmetric, off-center light falloff effects.</li>
+      <li><strong style="color:var(--white)">New Selection</strong>Add new Feather param and circle selection shape — empowering gradients with softer edges.</li>
     </ul>
   </div>
 </section>
 
-<section id="faq" style="
-  padding: 80px 48px;
-  position: relative;
-">
-  <div style=" margin:0 auto;">
-    <div style= margin-bottom:48px;">
+<section id="faq">
+
+ 
+  <div class="section-inner">
+
+    <div style="margin-bottom:24px;">
+
       <div class="section-badge" style="border: 1px solid rgba(255,255,255,0.15); color: var(--text-dim); background: rgba(255,255,255,0.02);">Common questions</div>
-      <h2 style="font-size:clamp(30px,4vw,48px); font-weight:800; color:var(--white); letter-spacing:-1px; margin-top:12px;">
-        FAQ
-      </h2>
+      
+      <h2 class="section-title">FAQ</h2>
+       <p class="section-desc">Can't find the answer to your question? Feel free to reach out to me on <a href="https://x.com/LightPainterPro" target="_blank">X (Twitter)</a> or <a target="_blank" href="https://discord.gg/VyUQ7Ru64B">Discord</a>.</p>
     </div>
 
     <div class="faq-list">
 
       <details class="faq-item">
         <summary>What exactly does Light Painter paint on?</summary>
-        <p>It paints on the light's light (gobo) texture — the image that controls what a Spot or Area light projects. You're not painting on scene objects or meshes. The light itself is your canvas, so there are no limitations from object materials or emission shaders. Everything happens on the light.</p>
+        <p>It paints on the light's gobo texture — the image that controls what a Spot or Area light projects. You're not painting on scene objects or meshes. The light itself is your canvas, so there are no limitations from object materials or emission shaders. Everything happens on the light.</p>
       </details>
 
       <details class="faq-item">
@@ -1081,7 +1228,6 @@ footer .footer-links a:hover { color: var(--white); }
   </div>
 </section>
 
-
 <section class="section" >
 
   <div class="section-inner">
@@ -1094,7 +1240,7 @@ footer .footer-links a:hover { color: var(--white); }
       </div>
 
 
-      <p style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 1.5rem;">
+      <p style="font-size: 1.15rem; line-height: 1.5; margin: 1.5rem 0;">
         New Preview-it™ Add-on — real-time previews for everything inside your Geometry Tree:
         geometry shapes, field values, attribute flow, selection masks, and more.
         All without constantly checking the viewport, wiring temporary viewers, or digging through the spreadsheet
@@ -1106,24 +1252,79 @@ footer .footer-links a:hover { color: var(--white); }
         🔥 Beta Access: <strong>60% OFF</strong>
       </a>
 
-    </div>
   </div>
 
 </section>
-
-</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Light<span>Painter</span></div>
   <p>This is real light… that you can paint.</p>
   <div class="footer-links">
-    <a href="https://superhivemarket.com/products/light-painter/docs">Documentation</a>
-    <a href="https://discord.gg/VyUQ7Ru64B">Discord</a>
-    <a href="https://www.youtube.com/@ShaderError">YouTube</a>
+    <a href="https://superhivemarket.com/products/light-painter/docs" target="_blank">Documentation</a>
+    <a href="https://discord.gg/VyUQ7Ru64B" target="_blank">Discord</a>
+    <a href="https://www.youtube.com/@ShaderError" target="_blank">YouTube</a>
   </div>
-  <p style="margin-top:24px; font-size:12px;">Blender Add-on · Cycles · Spot &amp; Area Lights</p>
 </footer>
+
+</div>
+
+<section id="end-zone">
+  <p class="end-zone-sub">
+      You’ve reached the end of the page… This place exists inside an iframe. Sometimes the page is way taller than the content. So I added five pixels down here… standing guard against the infinite void.
+  </p>
+  <div class="end-zone-dots" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <button class="end-zone-scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span class="arrow">↑</span> Back to the light side
+  </button>
+</section>
+
+</div>
+
+<script>
+// ─── END-ZONE: only show if fully fits in the space below the wrapper ───
+(function() {
+  const endZone = document.getElementById('end-zone');
+  const wrapper = document.querySelector('.wrapper');
+  if (!endZone || !wrapper) return;
+
+  // Temporarily make it measurable without flashing
+  endZone.style.visibility = 'hidden';
+  endZone.style.opacity = '0';
+
+  function checkFit() {
+    const viewportH = window.innerHeight;
+    const wrapperBottom = wrapper.getBoundingClientRect().bottom;
+    const spaceBelow = viewportH - wrapperBottom;
+
+    // Measure end-zone's natural height (force it visible for measurement if needed)
+    const prevVis = endZone.style.visibility;
+    endZone.style.visibility = 'hidden';
+    endZone.classList.add('is-visible'); // enables layout
+    const endZoneH = endZone.offsetHeight;
+    endZone.classList.remove('is-visible');
+    endZone.style.visibility = prevVis;
+
+    // Only show if the full end-zone fits in the gap below the wrapper
+    if (spaceBelow >= endZoneH) {
+      endZone.classList.add('is-visible');
+    } else {
+      endZone.classList.remove('is-visible');
+    }
+  }
+
+  checkFit();
+  window.addEventListener('resize', checkFit);
+  window.addEventListener('scroll', checkFit, { passive: true });
+  // Recheck after images/fonts settle
+  window.addEventListener('load', checkFit);
+  setTimeout(checkFit, 500);
+  setTimeout(checkFit, 1500);
+})();
+</script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
