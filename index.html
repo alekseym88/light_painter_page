@@ -39,7 +39,7 @@ body {
   line-height: 1.35;
   overflow-x:hidden;
   cursor: default;
-  max-width:1000px;
+  max-width:1200px;
   margin: 0 auto;
   height: 100%;
 }
@@ -395,10 +395,9 @@ footer .footer-links a:hover { color: var(--white); }
     display: flex;
     white-space: nowrap;
     animation: marquee 16s linear infinite;
-    animation-duration: 25s;
-    animation-direction: reverse;
+    animation-duration: 30s;
     opacity: 0.08;
-    margin-top: -10px;
+    margin-top: -18px;
     filter: blur(2px);
 
 }
@@ -665,7 +664,7 @@ footer .footer-links a:hover { color: var(--white); }
 
 <div style="position: relative; height: 100%;">
 
-<div class="wrapper" style="overflow-x: hidden;position: relative;background: var(--black)">
+<div class="wrapper" style="overflow-x: visible;position: relative;background: var(--black)">
 
 <!-- LANGUAGE SWITCHER -->
 <div id="lang-switcher">
@@ -676,7 +675,7 @@ footer .footer-links a:hover { color: var(--white); }
 
 <div id="promo-bar">
   
-  <div class="promo-sale">
+  <div class="promo-sale" style="display:none;">
     <span>50% OFF — SALE — ENDS APRIL 23 — LAST CHANCE</span>
     <span>🔥</span>
     <span>50% OFF — SALE — ENDS APRIL 23 — LAST CHANCE</span>
@@ -694,7 +693,7 @@ footer .footer-links a:hover { color: var(--white); }
     <span><small>✦</small></span>
     <span>PAINT LIGHT IN REAL-TIME</span>
   </div>
-  <div class="promo-glow"></div>
+  <div class="promo-glow" style="display:none;"></div>
 </div>
 
 
@@ -947,8 +946,8 @@ footer .footer-links a:hover { color: var(--white); }
 ">
 
   <div class="pricing-marquee">
-    <span>50% OFF · FULL RELEASE SALE · </span>
-    <span>50% OFF · FULL RELEASE SALE · </span>
+    <span>TRUSTED BY 800+ BLENDER ARTISTS · </span>
+    <span>TRUSTED BY 800+ BLENDER ARTISTS · </span>
   </div>
 
   <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:600px; height:400px; background:radial-gradient(ellipse, rgba(255,107,53,0.06), transparent 70%); pointer-events:none;"></div>
@@ -975,8 +974,8 @@ footer .footer-links a:hover { color: var(--white); }
       ">
         <div style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px;">Lite (Light Space)</div>
         <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
-          <span style="font-size:42px; font-weight:800; color:var(--white); font-family: 'Unbounded', 'Syne', sans-serif;">$6</span>
-          <span style="font-size:16px; color:var(--text-dim); text-decoration:line-through;">$12</span>
+          <span style="font-size:42px; font-weight:800; color:var(--white); font-family: 'Unbounded', 'Syne', sans-serif;">$12</span>
+          <span style="font-size:16px; color:var(--text-dim); text-decoration:line-through; display: none;">$12</span>
         </div>
         <p style="font-size:14px; color:var(--text-dim); margin-bottom:24px; line-height:1.5;">
           Core brush painting with layers — a great way to start painting light.
@@ -1006,8 +1005,8 @@ footer .footer-links a:hover { color: var(--white); }
 
         <div style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#ff35a1; margin-bottom:12px;">Full (Light &amp; <span style="white-space: nowrap;">Camera Space</span>)</div>
         <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
-          <span style="font-size:42px; font-weight:800; color:var(--white); font-family: 'Unbounded', 'Syne', sans-serif;">$18</span>
-          <span style="font-size:16px; color:var(--text-dim); text-decoration:line-through;">$36</span>
+          <span style="font-size:42px; font-weight:800; color:var(--white); font-family: 'Unbounded', 'Syne', sans-serif;">$36</span>
+          <span style="font-size:16px; color:var(--text-dim); text-decoration:line-through;display: none;">$36</span>
         </div>
         <p style="font-size:14px; color:var(--text-dim); margin-bottom:24px; line-height:1.5;">
           The complete toolkit — every tool, every setting, zero limitations.
@@ -1141,6 +1140,9 @@ footer .footer-links a:hover { color: var(--white); }
     <p class="section-desc">I'm actively developing new features to make Light Painter even more powerful. Estimated release: 6–9 months.</p>
     <ul class="upcoming-list">
       <li><strong style="color:var(--white)">EEVEE support</strong>Bring light painting to EEVEE. Different engine, same creative workflow.</li>
+      <li><strong style="color:var(--white)">Line Tool</strong>Draw precise straight lines and polylines Illustrator-style — click to anchor points, build connected segments, and shape light with geometric accuracy.</li>
+      <li><strong style="color:var(--white)">Noise-Driven Layers</strong>Attach a noise modulator to any layer to drive opacity, position, or scale — bringing animation to the next level with organic flicker, drift, and procedural motion.</li>
+      <li><strong style="color:var(--white)">Symmetry Painting</strong>Paint with X, Y, or radial symmetry — set the gap and repeat count to build symmetric, pattern-style light with a single stroke.</li>
       <li><strong style="color:var(--white)">Textured Brush</strong>Paint with image-based brush tips for organic patterns like leaves and custom shapes.</li>
       <li><strong style="color:var(--white)">Blur Tool</strong>Blur the result for better and more smooth light transition.</li>
       <li><strong style="color:var(--white)">Smear Tool</strong>Reshape light intuitively without redoing paint.</li>
@@ -2669,19 +2671,27 @@ void main() {
   const upcomingT = {
     ja: [
       ['EEVEE対応', 'ライトペインティングをEEVEEに。異なるエンジンでも同じ創作ワークフロー。'],
+      ['ラインツール', 'Illustratorスタイルで正確な直線やポリラインを描画 — クリックでアンカーポイントを配置し、連結セグメントを構築、幾何学的精度で光をシェイプ。'],
+      ['ノイズ駆動レイヤー', '任意のレイヤーにノイズモジュレーターをアタッチして不透明度・位置・スケールを駆動 — 有機的なフリッカー、ドリフト、プロシージャルモーションでアニメーションを次のレベルへ。'],
+      ['シンメトリーペインティング', 'X軸・Y軸・放射状のシンメトリーでペイント — ギャップと繰り返し回数を設定し、1ストロークでシンメトリックなパターン状の光を構築。'],
       ['テクスチャブラシ', '画像ベースのブラシチップで葉やカスタムシェイプなどの有機的パターンをペイント。'],
       ['ブラーツール', '結果をぼかして、より滑らかな光の遷移を実現。'],
       ['スメアツール', 'ペイントをやり直すことなく直感的に光を再形成。'],
       ['高度なグラデーション制御', 'カラーストップの追加・削除、ドラッグで位置調整、マルチポイントの精密制御。'],
       ['ラジアルフォーカルシフト', 'ラジアルグラデーションの焦点をオフセットして非対称なフォールオフ効果を。'],
+      ['新しい選択機能', '新しいフェザーパラメーターと円形選択シェイプ — グラデーションをより柔らかいエッジで強化。'],
     ],
     ko: [
       ['EEVEE 지원', '라이트 페인팅을 EEVEE에서도. 다른 엔진, 같은 창작 워크플로우.'],
+      ['라인 도구', 'Illustrator 스타일로 정확한 직선과 폴리라인 그리기 — 클릭으로 앵커 포인트를 배치하고 연결된 세그먼트를 구성, 기하학적 정밀도로 빛을 셰이핑.'],
+      ['노이즈 드리븐 레이어', '레이어에 노이즈 모듈레이터를 연결해 불투명도, 위치, 스케일을 제어 — 유기적인 플리커, 드리프트, 프로시저럴 모션으로 애니메이션을 한 단계 업그레이드.'],
+      ['대칭 페인팅', 'X축, Y축 또는 방사형 대칭으로 페인팅 — 간격과 반복 횟수를 설정해 한 번의 스트로크로 대칭 패턴 스타일의 빛을 구축.'],
       ['텍스처 브러시', '이미지 기반 브러시 팁으로 나뭇잎, 커스텀 셰이프 등 유기적 패턴을 페인팅.'],
       ['블러 도구', '결과를 블러 처리해 더 부드러운 라이트 전환을 구현.'],
       ['스미어 도구', '페인트를 다시 하지 않고도 직관적으로 빛을 재형성.'],
       ['고급 그라데이션 제어', '컬러 스톱 추가/제거, 드래그로 위치 조정, 멀티포인트 정밀 제어.'],
       ['방사형 포컬 시프트', '방사형 그라데이션의 초점을 오프셋해 비대칭 폴오프 효과.'],
+      ['새로운 선택 기능', '새로운 페더 파라미터와 원형 선택 셰이프 — 더 부드러운 엣지로 그라데이션을 강화.'],
     ]
   };
 
