@@ -727,7 +727,7 @@ footer .footer-links a:hover { color: var(--white); }
         allowfullscreen>
     </iframe>
   </div>
-  <p class="hero-compat" style="margin-bottom: 40px;">Works with <span>Cycles</span> · <span>EEVEE</span> <small>(comming soon)</small> · <span>Spot</span> &amp; <span>Area</span> lights</p>
+  <p class="hero-compat" style="margin-bottom: 40px;">Works with <span>Cycles</span> · <span>Spot</span> &amp; <span>Area</span> lights</p>
   
   <p style="color: var(--text); font-size:18px; font-weight: 300;">
       Traditional lighting in Blender feels indirect and frustrating: tweaking position, size, power, swapping gobo textures, adjusting everything over and over until get the mood right.
@@ -1143,7 +1143,6 @@ footer .footer-links a:hover { color: var(--white); }
     <h2 class="section-title">New features</h2>
     <p class="section-desc">I'm actively developing new features to make Light Painter even more powerful. Estimated release: 6–9 months.</p>
     <ul class="upcoming-list">
-      <li><strong style="color:var(--white)">EEVEE support</strong>Bring light painting to EEVEE. Different engine, same creative workflow.</li>
       <li><strong style="color:var(--white)">Line Tool</strong>Draw precise straight lines and polylines Illustrator-style — click to anchor points, build connected segments, and shape light with geometric accuracy.</li>
       <li><strong style="color:var(--white)">Noise-Driven Layers</strong>Attach a noise modulator to any layer to drive opacity, position, or scale — bringing animation to the next level with organic flicker, drift, and procedural motion.</li>
       <li><strong style="color:var(--white)">Symmetry Painting</strong>Paint with X, Y, or radial symmetry — set the gap and repeat count to build symmetric, pattern-style light with a single stroke.</li>
@@ -1153,6 +1152,7 @@ footer .footer-links a:hover { color: var(--white); }
       <li><strong style="color:var(--white)">Advanced Gradient Controls</strong>Add and remove color stops, drag to reposition them, and fine-tune gradients with multi-point precision.</li>
       <li><strong style="color:var(--white)">Radial Focal Shift</strong>Offset the focal point of radial gradients for asymmetric, off-center light falloff effects.</li>
       <li><strong style="color:var(--white)">New Selection</strong>Add new Feather param and circle selection shape — empowering gradients with softer edges.</li>
+      <li><strong style="color:var(--white)">EEVEE support</strong>Bring light painting to EEVEE. Different engine, same creative workflow.</li>
     </ul>
   </div>
 </section>
@@ -2674,7 +2674,6 @@ void main() {
   // Upcoming features translations
   const upcomingT = {
     ja: [
-      ['EEVEE対応', 'ライトペインティングをEEVEEに。異なるエンジンでも同じ創作ワークフロー。'],
       ['ラインツール', 'Illustratorスタイルで正確な直線やポリラインを描画 — クリックでアンカーポイントを配置し、連結セグメントを構築、幾何学的精度で光をシェイプ。'],
       ['ノイズ駆動レイヤー', '任意のレイヤーにノイズモジュレーターをアタッチして不透明度・位置・スケールを駆動 — 有機的なフリッカー、ドリフト、プロシージャルモーションでアニメーションを次のレベルへ。'],
       ['シンメトリーペインティング', 'X軸・Y軸・放射状のシンメトリーでペイント — ギャップと繰り返し回数を設定し、1ストロークでシンメトリックなパターン状の光を構築。'],
@@ -2686,7 +2685,6 @@ void main() {
       ['新しい選択機能', '新しいフェザーパラメーターと円形選択シェイプ — グラデーションをより柔らかいエッジで強化。'],
     ],
     ko: [
-      ['EEVEE 지원', '라이트 페인팅을 EEVEE에서도. 다른 엔진, 같은 창작 워크플로우.'],
       ['라인 도구', 'Illustrator 스타일로 정확한 직선과 폴리라인 그리기 — 클릭으로 앵커 포인트를 배치하고 연결된 세그먼트를 구성, 기하학적 정밀도로 빛을 셰이핑.'],
       ['노이즈 드리븐 레이어', '레이어에 노이즈 모듈레이터를 연결해 불투명도, 위치, 스케일을 제어 — 유기적인 플리커, 드리프트, 프로시저럴 모션으로 애니메이션을 한 단계 업그레이드.'],
       ['대칭 페인팅', 'X축, Y축 또는 방사형 대칭으로 페인팅 — 간격과 반복 횟수를 설정해 한 번의 스트로크로 대칭 패턴 스타일의 빛을 구축.'],
