@@ -128,12 +128,13 @@ h1{
 }
 .video-placeholder span { position: relative; z-index: 1; }
 
-.hero-video-wrap iframe {
+.hero-video-wrap iframe, .video-placeholder iframe{
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
 }
+
 
 .btn-primary {
   padding: 16px 40px; border-radius: 100px; font-family: 'Syne', sans-serif;
@@ -817,9 +818,16 @@ footer .footer-links a:hover { color: var(--white); }
   </div>
 
   <div class="section-inner">
-    <div class="section-video" style="display:none;">
+    <div class="section-video">
       <div class="video-placeholder">
-         <img src="https://assets.superhivemarket.com/cache/91d723258f274f9232ef72632c234963.gif" style="width: 100%;">
+         <iframe 
+        src="https://www.youtube-nocookie.com/embed/R8ddB0UlY8k" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+      </iframe>
       </div>
     </div>
     
