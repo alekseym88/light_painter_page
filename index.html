@@ -367,6 +367,67 @@ footer .footer-links a:hover { color: var(--white); }
     animation: pulseBlur 4.5s ease-in-out infinite;
 }
 
+#promo-code-banner {
+    position: relative;
+    z-index: 20;
+    background: linear-gradient(135deg, #00e5ff, #0077ff, #050507);
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+}
+.promo-code-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.promo-code-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.promo-code-value {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px dashed rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    user-select: all;
+}
+.promo-code-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #fff;
+    color: #050507;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+.promo-code-copy:hover {
+    transform: translateY(-1px);
+    background: #d8f6ff;
+}
+.promo-code-copy.copied {
+    background: #39ff14;
+    color: #050507;
+}
+@media (max-width: 600px) {
+    .promo-code-label { font-size: 12px; }
+    .promo-code-value { font-size: 13px; letter-spacing: 1.5px; padding: 4px 10px; }
+    .promo-code-copy { font-size: 11px; padding: 5px 10px; }
+}
+
 #promo-bar {
     position: absolute;
     padding: 16px 0 30px;
@@ -701,6 +762,15 @@ footer .footer-links a:hover { color: var(--white); }
 </style>
 </head>
 <body>
+
+<!-- PROMO CODE BANNER -->
+<div id="promo-code-banner">
+  <div class="promo-code-inner">
+    <span class="promo-code-label">Apply this code at checkout:</span>
+    <span class="promo-code-value" id="promo-code-value" title="Click to copy">LIGHTMAY35</span>
+    <button type="button" class="promo-code-copy" id="promo-code-copy" aria-label="Copy promo code">Copy</button>
+  </div>
+</div>
 
 <div style="position: relative; height: 100%;">
 
@@ -2554,7 +2624,9 @@ void main() {
   const T = {
     ja: {
       // Promo bar
-      '.promo-sale span:not(:has(small))': '50% OFF — セール — 4月23日まで — ラストチャンス',
+      '.promo-sale span:not(:has(small))': '35% OFF — セール — 期間限定 — お見逃しなく',
+      '.promo-code-label': 'チェックアウト時にこのコードを入力:',
+      '.promo-code-copy': 'コピー',
       // Hero
       '#hero .title:not(.gradient-text)': 'ライティングと戦うのはもうやめよう。',
       '#hero .gradient-text': '光を描こう。',
@@ -2624,7 +2696,9 @@ void main() {
       '.full-plus': 'Liteの全機能に加えて：',
     },
     ko: {
-      '.promo-sale span:not(:has(small))': '50% 할인 — 세일 — 4월 23일까지 — 마지막 기회',
+      '.promo-sale span:not(:has(small))': '35% 할인 — 세일 — 기간 한정 — 마지막 기회',
+      '.promo-code-label': '결제 시 이 코드를 입력하세요:',
+      '.promo-code-copy': '복사',
       '#hero .title:not(.gradient-text)': '조명과 싸우지 마세요.',
       '#hero .gradient-text': '빛을 그리세요.',
       '.hero-sub': '최초의 Blender 애드온. 브러시, 그라데이션, 선택, 레이어로 뷰포트에서 직접 직관적으로 조명을 페인팅합니다.',
@@ -3017,6 +3091,7 @@ void main() {
       }
     }
     currentLang = lang;
+    document.documentElement.lang = lang;
   }
 
   // Init
@@ -3051,6 +3126,37 @@ document.querySelectorAll('.section-inner, .hero-content, .common-header, #compa
   el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
   observer.observe(el);
 });
+
+// ─── PROMO CODE COPY ───
+(function() {
+  const code = 'LIGHTMAY35';
+  const btn = document.getElementById('promo-code-copy');
+  const val = document.getElementById('promo-code-value');
+  if (!btn || !val) return;
+  const copiedLabels = { en: 'Copied!', ja: 'コピーしました!', ko: '복사됨!' };
+  const copy = () => {
+    const done = () => {
+      const lang = document.documentElement.lang || 'en';
+      const original = btn.textContent;
+      btn.textContent = copiedLabels[lang] || copiedLabels.en;
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done).catch(done);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+  };
+  btn.addEventListener('click', copy);
+  val.addEventListener('click', copy);
+})();
 </script>
 
 </body>
