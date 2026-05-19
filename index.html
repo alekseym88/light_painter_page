@@ -767,8 +767,7 @@ footer .footer-links a:hover { color: var(--white); }
 <div id="promo-code-banner">
   <div class="promo-code-inner">
     <span class="promo-code-label">Apply this code at checkout:</span>
-    <span class="promo-code-value" id="promo-code-value" title="Click to copy">LIGHTMAY40</span>
-    <button type="button" class="promo-code-copy" id="promo-code-copy" aria-label="Copy promo code">Copy</button>
+    <span class="promo-code-value" id="promo-code-value">LIGHTMAY40</span>
   </div>
 </div>
 
@@ -3126,37 +3125,6 @@ document.querySelectorAll('.section-inner, .hero-content, .common-header, #compa
   el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
   observer.observe(el);
 });
-
-// ─── PROMO CODE COPY ───
-(function() {
-  const code = 'LIGHTMAY40';
-  const btn = document.getElementById('promo-code-copy');
-  const val = document.getElementById('promo-code-value');
-  if (!btn || !val) return;
-  const copiedLabels = { en: 'Copied!', ja: 'コピーしました!', ko: '복사됨!' };
-  const copy = () => {
-    const done = () => {
-      const lang = document.documentElement.lang || 'en';
-      const original = btn.textContent;
-      btn.textContent = copiedLabels[lang] || copiedLabels.en;
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(code).then(done).catch(done);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = code;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      done();
-    }
-  };
-  btn.addEventListener('click', copy);
-  val.addEventListener('click', copy);
-})();
 </script>
 
 </body>
